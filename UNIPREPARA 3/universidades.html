@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-AO" style="overflow-x:hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+  <title>Catálogo de Universidades | UNIPREPARA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { background:'#f8f8f8', foreground:'#0A0A0A', primary:'#FF5A00', 'primary-foreground':'#ffffff', surface:'#ffffff', border:'#e2e2e2' },
+          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center bg-primary text-primary-foreground font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary transition-all duration-300 hover:bg-transparent hover:text-primary active:scale-95; border-radius:0; }
+      .btn-ghost { @apply inline-flex items-center justify-center bg-transparent text-foreground uppercase tracking-widest px-8 py-4 border-2 border-border transition-all duration-300 hover:border-primary hover:text-primary active:scale-95; border-radius:0; }
+      .card-sharp { @apply bg-surface border-2 border-border p-6 transition-all duration-300 hover:border-primary hover:translate-y-[-4px]; border-radius:0; }
+    }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-background text-foreground min-h-screen flex flex-col text-base overflow-x-hidden">
+
+  <!-- Header -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b-2 bg-surface/95 backdrop-blur-md border-border py-4 text-sm">
+    <nav class="container mx-auto px-4 md:px-6 max-w-7xl flex items-center justify-between">
+      <a href="index.html" class="flex items-center group shrink-0">
+        <img src="assets/logo.png" alt="UNIPREPARA Logo" class="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/120x56/FF5A00/FFFFFF?text=UNIPREPARA';this.onerror=null;" />
+      </a>
+      <div class="hidden md:flex items-center gap-8 font-semibold tracking-wide uppercase">
+        <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+        <a href="sobre.html" class="hover:text-primary transition-colors">Sobre</a>
+        <a href="universidades.html" class="text-primary border-b-2 border-primary pb-1">Universidades</a>
+        <a href="preparatorio.html" class="hover:text-primary transition-colors">Preparatório</a>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="cadastro.html" class="btn-ghost py-2 px-4 text-sm">Criar Conta</a>
+        <a href="login.html" class="btn-primary py-2 px-4 text-sm">Entrar</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-foreground p-2 -mr-2">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+    </nav>
+  </header>
+<div id="mobile-menu" class="md:hidden fixed inset-0 top-20 md:top-24 bg-background border-t-2 border-border z-[200] overflow-y-auto transition-transform duration-300 flex flex-col px-6 py-8 gap-6 uppercase font-bold text-lg translate-x-full">
+      <a href="index.html" class="hover:text-primary border-b-2 border-border pb-4">Home</a>
+      <a href="sobre.html" class="hover:text-primary border-b-2 border-border pb-4">Sobre</a>
+      <a href="universidades.html" class="text-primary border-b-2 border-primary pb-4">Universidades</a>
+      <a href="preparatorio.html" class="hover:text-primary border-b-2 border-border pb-4">Preparatório</a>
+      <div class="mt-auto flex flex-col gap-3">
+        <a href="cadastro.html" class="btn-ghost w-full text-center">Criar Conta</a>
+        <a href="login.html" class="btn-primary w-full text-center">Entrar</a>
+      </div>
+    </div>
+
+  <!-- Main -->
+  <main class="flex-1 overflow-x-hidden pt-20 md:pt-24 pb-24">
+    <section class="container mx-auto px-4 md:px-6 max-w-7xl">
+      <div class="mb-10 border-b-4 border-foreground pb-8 flex flex-col md:flex-row justify-between items-end gap-6 pt-8 md:pt-12">
+        <div>
+          <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-4">
+            Catálogo de<br/><span class="text-primary">Universidades</span>
+          </h1>
+          <p class="text-lg md:text-xl font-medium opacity-80 max-w-xl">
+            Filtre por tipo de instituição e encontre as opções de ensino superior de Luanda.
+          </p>
+        </div>
+        <div class="bg-foreground text-background px-6 py-4 font-bold text-sm uppercase tracking-widest shadow-[8px_8px_0px_rgba(255,90,0,1)] shrink-0">
+          Dados Atualizados
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-col sm:flex-row gap-4 md:gap-6 mb-10 md:mb-12 bg-surface p-4 md:p-6 border-2 border-border">
+        <div class="flex-1">
+          <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Filtrar por Província</label>
+          <select id="filter-province" class="w-full bg-background border-2 border-border p-3 font-medium focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer">
+            <option value="Luanda">Luanda</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Tipo de Instituição</label>
+          <select id="filter-type" class="w-full bg-background border-2 border-border p-3 font-medium focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer">
+            <option value="Todas">Pública & Privada</option>
+            <option value="Pública">Pública</option>
+            <option value="Privada">Privada</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="block text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Pesquisar por Curso</label>
+          <input id="filter-course" type="text" placeholder="Ex: Medicina, Direito..." class="w-full bg-background border-2 border-border p-3 font-medium focus:outline-none focus:border-primary transition-colors" />
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div id="university-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background py-16 border-t-8 border-primary">
+    <div class="container mx-auto px-4 md:px-6 max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+      <div class="sm:col-span-2 space-y-6">
+        <a href="index.html">
+          <img src="assets/logo.png" alt="UNIPREPARA Logo" class="h-16 w-auto object-contain" onerror="this.src='https://placehold.co/150x50/FF5A00/FFFFFF?text=UNIPREPARA';this.onerror=null;" />
+        </a>
+        <p class="text-background/70 max-w-sm font-medium leading-relaxed">
+          Protótipo académico (TCC) desenvolvido para o IPPS. Guiando estudantes finalistas de Angola no Ensino Superior.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-6 uppercase tracking-widest text-primary">Navegação</h4>
+        <ul class="space-y-4 font-semibold text-background/80">
+          <li><a href="index.html" class="hover:text-primary transition-colors">Início</a></li>
+          <li><a href="sobre.html" class="hover:text-primary transition-colors">O Projeto</a></li>
+          <li><a href="universidades.html" class="text-primary transition-colors">Instituições</a></li>
+          <li><a href="preparatorio.html" class="hover:text-primary transition-colors">Preparatório</a></li>
+          <li><a href="login.html" class="hover:text-primary transition-colors">Entrar</a></li>
+          <li><a href="cadastro.html" class="hover:text-primary transition-colors">Criar Conta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container mx-auto px-4 md:px-6 max-w-7xl mt-16 pt-8 border-t border-background/20 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium text-background/60">
+      <p>&copy; <span id="current-year"></span> UNIPREPARA. Protótipo TCC IPPS.</p>
+      <p>Desenvolvido com Antigravity</p>
+    </div>
+  </footer>
+
+  <!-- UNIGUIA Widget -->
+  <div class="fixed bottom-5 right-2 md:right-6 z-50 flex flex-col items-end gap-3">
+    <div id="assistant-bubble" class="bg-surface border-2 border-primary w-[calc(100vw-2rem)] max-w-[380px] md:max-w-[440px] shadow-[8px_8px_0px_rgba(255,90,0,0.3)] transition-all duration-300 transform origin-bottom-right scale-0 opacity-0 pointer-events-none">
+      <div class="bg-foreground text-background border-b-2 border-primary">
+        <div class="p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary flex items-center justify-center shrink-0"><i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i></div>
+            <div><h4 class="font-black uppercase tracking-widest text-sm flex items-center gap-2">UNIGUIA <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span></h4><p class="text-background/60 text-xs">Como posso ajudar?</p></div>
+          </div>
+          <button id="close-assistant" class="text-background/60 hover:text-primary transition-colors p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="flex border-t border-background/10">
+          <button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider text-primary border-b-2 border-primary bg-background/5"><i data-lucide="message-square" class="w-3 h-3 inline mr-1"></i> Chat</button>
+          <button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider text-background/50 hover:text-background transition-colors" onclick="window.location.href='universidades.html'"><i data-lucide="search" class="w-3 h-3 inline mr-1"></i> Buscar</button>
+          <button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider text-background/50 hover:text-background transition-colors" onclick="window.location.href='preparatorio.html'"><i data-lucide="book-open" class="w-3 h-3 inline mr-1"></i> Guias</button>
+        </div>
+      </div>
+      <div id="chat-messages" class="p-4 h-72 overflow-y-auto flex flex-col gap-3 bg-background">
+        <div class="flex justify-start"><div class="bg-surface border-2 border-border text-foreground text-sm font-medium px-4 py-2 max-w-[85%]">Olá! Sou o <strong>UNIGUIA</strong>. Estás na página de Universidades. Usa os filtros acima para encontrar a tua melhor opção! 🎓</div></div>
+      </div>
+      <div class="p-3 border-t-2 border-border bg-surface flex items-center gap-2">
+        <input id="chat-input" type="text" placeholder="Escreva a sua mensagem..." class="flex-1 bg-background border-2 border-border px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors" />
+        <button id="chat-send-btn" class="w-10 h-10 bg-primary text-white flex items-center justify-center hover:bg-foreground transition-colors shrink-0"><i data-lucide="send" class="w-4 h-4"></i></button>
+      </div>
+    </div>
+    <button id="toggle-assistant" class="w-16 h-16 bg-primary text-primary-foreground flex items-center justify-center border-2 border-primary shadow-[4px_4px_0px_#0A0A0A] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0A0A0A] active:translate-y-[2px] active:shadow-none transition-all duration-200" aria-label="Abrir UNIGUIA">
+      <i id="assistant-icon" data-lucide="message-square" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <script src="assets/main.js"></script>
+  <script>
+    const UNIVERSITIES_DATA = [
+      { id:1,  name:"Universidade Agostinho Neto", abbr:"UAN", type:"Pública", courses:["Medicina","Direito","Engenharia","Economia","Arquitetura","Biologia","Matemática","Letras"] },
+      { id:2,  name:"Instituto Superior de Tecnologias de Informação e Comunicação", abbr:"ISUTIC", type:"Pública", courses:["Eng. Informática","Telecomunicações","Sistemas de Informação","Ciências da Computação"] },
+      { id:3,  name:"Instituto Superior Técnico de Angola", abbr:"ISTA", type:"Pública", courses:["Eng. Civil","Eng. Mecânica","Eng. Elétrica","Arquitectura"] },
+      { id:4,  name:"Universidade Metodista de Angola", abbr:"UMA", type:"Privada", courses:["Administração","Direito","Psicologia","Teologia","Contabilidade"] },
+      { id:5,  name:"Universidade Católica de Angola", abbr:"UCAN", type:"Privada", courses:["Eng. Petróleos","Direito","Economia","Gestão","Ciências da Educação"] },
+      { id:6,  name:"Instituto Superior Independente de Angola", abbr:"ISIA", type:"Privada", courses:["Gestão de RH","Contabilidade","Marketing","Gestão Empresarial"] },
+      { id:7,  name:"Universidade Kangonjo de Angola", abbr:"UKB", type:"Privada", courses:["Comunicação Social","Direito","Gestão","Relações Internacionais"] },
+      { id:8,  name:"Universidade Lusíada de Angola", abbr:"ULA", type:"Privada", courses:["Direito","Arquitectura","Engenharia","Gestão","Informática"] },
+      { id:9,  name:"Instituto Superior Politécnico e Universitário", abbr:"ISPTEC", type:"Privada", courses:["Eng. Informática","Eng. Electrónica","Telecomunicações","Gestão de Negócios"] },
+      { id:10, name:"Universidade Privada de Angola", abbr:"UPRA", type:"Privada", courses:["Administração Pública","Direito","Economia","Ciências da Comunicação"] },
+      { id:11, name:"Instituto Superior de Ciências da Saúde", abbr:"ISCISA", type:"Privada", courses:["Enfermagem","Análises Clínicas","Medicina","Fisioterapia"] },
+      { id:12, name:"Universidade Jean Piaget de Angola", abbr:"UJPA", type:"Privada", courses:["Psicologia","Letras","Sociologia","Direito","Ciências da Educação"] },
+      { id:13, name:"Instituto Superior de Ciências Económicas e Empresariais", abbr:"ISCEE", type:"Privada", courses:["Contabilidade","Gestão","Finanças","Marketing","Comércio Internacional"] },
+      { id:14, name:"Escola Superior Pedagógica do Kwanza Norte", abbr:"ESPKN", type:"Pública", courses:["Ciências da Educação","Pedagogia","Língua Portuguesa","Matemática"] },
+    ];
+
+    const gridEl = document.getElementById('university-grid');
+    const filterType = document.getElementById('filter-type');
+    const filterCourse = document.getElementById('filter-course');
+
+    function renderGrid() {
+      const type = filterType.value;
+      const course = filterCourse.value.toLowerCase().trim();
+
+      const filtered = UNIVERSITIES_DATA.filter(uni => {
+        const typeMatch = type === 'Todas' || uni.type === type;
+        const courseMatch = course === '' || uni.courses.some(c => c.toLowerCase().includes(course));
+        return typeMatch && courseMatch;
+      });
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = `<div class="col-span-full py-16 text-center border-4 border-dashed border-border flex flex-col items-center justify-center gap-4"><i data-lucide="search-x" class="w-12 h-12 text-border"></i><h3 class="text-2xl font-black uppercase text-foreground/50">Nenhum Resultado</h3><p class="text-foreground/50 font-medium">Tenta outro filtro ou curso.</p></div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+        return;
+      }
+
+      gridEl.innerHTML = filtered.map(uni => `
+        <div class="card-sharp flex flex-col h-full group">
+          <div class="flex justify-between items-start mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest ${uni.type === 'Pública' ? 'bg-blue-600' : 'bg-foreground'} text-background px-2 py-1">${uni.type}</span>
+            <span class="text-primary font-black uppercase tracking-widest text-xl opacity-20 group-hover:opacity-100 transition-opacity">${uni.abbr}</span>
+          </div>
+          <h3 class="text-xl font-black uppercase leading-tight mb-4">${uni.name}</h3>
+          <div class="flex items-center gap-2 text-foreground/70 font-medium mb-6">
+            <i data-lucide="map-pin" class="w-4 h-4 text-primary shrink-0"></i>
+            <span>Luanda, Angola</span>
+          </div>
+          <div class="border-t-2 border-border pt-4 mb-6 flex-1">
+            <div class="text-xs font-bold uppercase tracking-widest mb-3 opacity-50">Cursos de Destaque</div>
+            <div class="flex flex-wrap gap-2">
+              ${uni.courses.slice(0,5).map(c => `<span class="bg-background border border-border px-2 py-1 text-xs font-medium">${c}</span>`).join('')}
+              ${uni.courses.length > 5 ? `<span class="text-xs text-foreground/50 font-medium self-center">+${uni.courses.length - 5} mais</span>` : ''}
+            </div>
+          </div>
+          <button class="btn-ghost w-full">Ver Requisitos de Acesso</button>
+        </div>
+      `).join('');
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    filterType.addEventListener('change', renderGrid);
+    filterCourse.addEventListener('input', renderGrid);
+    renderGrid();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-AO" style="overflow-x:hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+  <title>Criar Conta | UNIPREPARA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { background:'#f8f8f8', foreground:'#0A0A0A', primary:'#FF5A00', 'primary-foreground':'#ffffff', surface:'#ffffff', border:'#e2e2e2' },
+          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center bg-primary text-primary-foreground font-bold uppercase tracking-widest px-8 py-4 border-2 border-primary transition-all duration-300 hover:bg-transparent hover:text-primary active:scale-95; border-radius:0; }
+    }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-background text-foreground min-h-screen flex flex-col md:flex-row text-base">
+
+  <!-- Left: Form -->
+  <div class="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 min-h-screen">
+    <div class="w-full max-w-md">
+      <div class="mb-10">
+        <a href="index.html" class="flex items-center gap-2 mb-10 group w-fit">
+          <img src="assets/logo.png" alt="UNIPREPARA Logo" class="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/120x56/FF5A00/FFFFFF?text=UNIPREPARA';this.onerror=null;" />
+        </a>
+        <div class="inline-block px-3 py-1 bg-primary/10 text-primary font-bold uppercase text-xs tracking-widest mb-4">Registo Gratuito</div>
+        <h1 class="text-4xl font-black uppercase tracking-tighter mb-2">Criar Conta</h1>
+        <p class="text-foreground/60 font-medium">Junta-te à UNIPREPARA e começa a tua jornada universitária.</p>
+      </div>
+
+      <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='index.html';">
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-foreground/80">Nome Completo</label>
+          <input type="text" placeholder="Ex: Maria João Silva" required
+            class="w-full bg-surface border-2 border-border px-4 py-4 focus:outline-none focus:border-primary transition-colors text-lg" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-foreground/80">E-mail</label>
+          <input type="email" placeholder="estudante@dominio.com" required
+            class="w-full bg-surface border-2 border-border px-4 py-4 focus:outline-none focus:border-primary transition-colors text-lg" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-foreground/80">Senha</label>
+          <input type="password" placeholder="Mínimo 8 caracteres" required minlength="8"
+            class="w-full bg-surface border-2 border-border px-4 py-4 focus:outline-none focus:border-primary transition-colors text-lg" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-foreground/80">Confirmar Senha</label>
+          <input type="password" placeholder="Repita a senha" required
+            class="w-full bg-surface border-2 border-border px-4 py-4 focus:outline-none focus:border-primary transition-colors text-lg" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-bold uppercase tracking-widest text-foreground/80">Ano Escolar</label>
+          <select class="w-full bg-surface border-2 border-border px-4 py-4 focus:outline-none focus:border-primary transition-colors text-lg appearance-none">
+            <option>13.ª Classe (Finalista)</option>
+            <option>12.ª Classe</option>
+            <option>Já terminei – Procurando Vaga</option>
+          </select>
+        </div>
+
+        <div class="flex items-start gap-3 pt-2">
+          <input type="checkbox" id="terms" required class="mt-1 w-4 h-4 border-2 border-border accent-primary cursor-pointer" />
+          <label for="terms" class="text-sm font-medium text-foreground/70 cursor-pointer">
+            Aceito os <a href="#" class="text-primary font-bold hover:underline">Termos de Uso</a> e a <a href="#" class="text-primary font-bold hover:underline">Política de Privacidade</a> da UNIPREPARA.
+          </label>
+        </div>
+
+        <button type="submit" class="w-full btn-primary group flex items-center justify-between mt-2">
+          <span>Criar Minha Conta</span>
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+      </form>
+
+      <div class="mt-8 pt-8 border-t-2 border-border text-center">
+        <p class="text-foreground/70 font-medium text-sm">
+          Já tem conta? <a href="login.html" class="text-primary font-bold uppercase hover:underline">Faça Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Graphic Panel -->
+  <div class="hidden md:flex w-1/2 bg-foreground relative overflow-hidden items-center justify-center min-h-screen shrink-0">
+    <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
+      style="background-image:url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"></div>
+    <div class="relative z-10 w-3/4 border-4 border-primary p-10 flex flex-col justify-end text-background shadow-[-16px_16px_0px_rgba(255,90,0,1)]">
+      <i data-lucide="graduation-cap" class="text-primary mb-8 w-16 h-16"></i>
+      <h2 class="text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
+        O Início do Seu Futuro <span class="text-primary">Brilhante.</span>
+      </h2>
+      <ul class="space-y-3 border-l-2 border-primary pl-4">
+        <li class="flex items-center gap-2 text-background/90 font-medium">
+          <span class="w-2 h-2 bg-primary shrink-0"></span>
+          Acesso a 14+ universidades de Luanda
+        </li>
+        <li class="flex items-center gap-2 text-background/90 font-medium">
+          <span class="w-2 h-2 bg-primary shrink-0"></span>
+          Guias PDF gratuitos por disciplina
+        </li>
+        <li class="flex items-center gap-2 text-background/90 font-medium">
+          <span class="w-2 h-2 bg-primary shrink-0"></span>
+          Assistente UNIGUIA disponível 24/7
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
